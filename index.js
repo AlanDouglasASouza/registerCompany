@@ -26,11 +26,39 @@ app.post('/sendCompany', (req, res) => {
         abstract: req.body.abstract,
         photoCompany: req.body.photoCompany        
     }).then(() => {
-        res.send("Post feito com sucesso!")
+        res.send("Post feito com sucesso!");
     }).catch((erro) => {
-        res.send("Erro ao fazer o Post: " + erro)
+        res.send("Erro ao fazer o Post: " + erro);
     })
 })
+
+app.post('/registerCompany', async (req, res) => {
+    const createInf = await Company_inf.create({
+        director: req.body.director,
+        cnpj: req.body.cnpj,
+        insc_est: req.body.insc_est,
+        insc_mun: req.body.insc_mun,
+        adress: req.body.adress,
+        email: req.body.email,
+        phone: req.body.phone,
+    }).catch((erro) => {
+        res.send("Erro ao fazer o post: " + erro);
+    });
+        
+    const idInf = await createInf.id;
+
+    await Company.create({
+        name: req.body.name,
+        abstract: req.body.abstract,
+        photoCompany: req.body.photoCompany,
+        companiesInformationId: idInf
+    }).catch((erro) => {
+        res.send("Erro ao fazer o post: " + erro);
+    });
+
+    res.send("Post Bem sucedido!");
+    
+});
 
 app.listen(8080, () => {
     console.log('Servidor iniciado');
