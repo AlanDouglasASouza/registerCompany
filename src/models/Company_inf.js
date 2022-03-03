@@ -1,4 +1,4 @@
-import  sequelize  from './db';
+import  sequelize  from '../database/db';
 import Sequelize from 'sequelize';
 
 const Company_inf = sequelize.define('companies_informations', {
@@ -7,17 +7,17 @@ const Company_inf = sequelize.define('companies_informations', {
         allowNull: false
     },
     cnpj: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         unique: true,
         allowNull: false    
     },
     insc_est: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         unique: true,
         allowNull: false 
     },
     insc_mun: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         unique: true,
         allowNull: false
     },
@@ -41,7 +41,7 @@ const Company_inf = sequelize.define('companies_informations', {
         type: Sequelize.STRING
     },
     phone: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false
     },
     facebook: {
@@ -52,6 +52,8 @@ const Company_inf = sequelize.define('companies_informations', {
     }
 })
 
-//Company_inf.sync({force:true});
+/*Company_inf.sync({force:true}).catch((erro) => {
+    console.log('erro fazendo a tabela: ' + erro);
+});*/
 
 export default Company_inf;

@@ -1,4 +1,4 @@
-import  sequelize  from './db';
+import  sequelize  from '../database/db';
 import Sequelize from 'sequelize';
 import Company_inf from './Company_inf';
 
@@ -21,6 +21,8 @@ const Company = sequelize.define('companies', {
 
 Company.belongsTo(Company_inf);
 
-//Company.sync({force:true});
+/*Company.sync({force:true}).catch((erro) => {
+    console.log('Erro ao fazer a tabela: ' + erro);
+});*/
 
 export default Company;
