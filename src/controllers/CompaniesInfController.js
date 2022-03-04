@@ -1,5 +1,5 @@
-import Company from "../models/Company";
-import Company_inf from "../models/Company_inf";
+import Company from "../models/Companies";
+import Company_inf from "../models/Companies_inf";
 import { validateCnpj } from "../validations/validateCnpj";
 import { validateInscEst } from "../validations/validateInscEst";
 import { validateEmail } from "../validations/validateEmail";
@@ -7,7 +7,7 @@ import { validateEmail } from "../validations/validateEmail";
 export const createCompany = async (req, res) => {
 
     if(!validateCnpj(req.body.cnpj)){
-        res.status(400).send('CNPJ inexistente!');
+        res.status(400).send('CNPJ does not exist!');
     }
     
     if(!validateInscEst(req.body.insc_est)){
@@ -15,7 +15,7 @@ export const createCompany = async (req, res) => {
     }
 
     if(!validateEmail(req.body.email)){
-        res.status(400).send('Email inexistente!');
+        res.status(400).send('Email does not exist!');
     }
 
     const createInf = await Company_inf.create({
@@ -27,7 +27,7 @@ export const createCompany = async (req, res) => {
         email: req.body.email,
         phone: req.body.phone,
     }).catch((erro) => {
-        res.status(400).send("Erro ao fazer o post: " + erro);
+        res.status(400).send("Err: " + erro);
     });
         
     const idInf = await createInf.id;
@@ -38,7 +38,7 @@ export const createCompany = async (req, res) => {
         photoCompany: req.body.photoCompany,
         companiesInformationId: idInf
     }).catch((erro) => {
-        res.send("Erro ao fazer o post: " + erro);
+        res.send("Err: " + erro);
     });
 
     res.send(companiesRegister);

@@ -1,30 +1,30 @@
-import Company from "../models/Company";
-import Company_inf from "../models/Company_inf";
+import Company from "../models/Companies";
+import Company_inf from "../models/Companies_inf";
 
 export const getAllCompanies = async (req, res) => {
         const buscarComp = await Company.findAll({
             include: Company_inf,
             where: {is_Active: true}
-        }).catch((erro) => {
-            res.send("Deu ruim: " + erro);
+        }).catch((err) => {
+            throw new Error("Err " + err);
         });
 
         res.json(buscarComp);
     }
 
 
-export const getOneComp = async (req, res) => {    
+export const getOneCompanies = async (req, res) => {    
         const oneComapany = await Company.findOne({
             include: Company_inf,
             where: {
                 id: req.params.id,
                 is_Active: true
             },
-        }).catch((erro) => {
-            res.send("Erro ao fazer o Get: " + erro);
+        }).catch((err) => {
+            throw new Error("Err " + err);
         });
         if (oneComapany == null) {
-            res.status(400).send("O valor do Id não existe");
+            res.status(400).send("non-existent ID");            
         }
         res.json(oneComapany);
     }   
@@ -33,11 +33,11 @@ export const getOneComp = async (req, res) => {
 export const deleteCompany = async (req, res) => {
     const companyUpdate = await Company.findByPk(req.params.id);
     if (companyUpdate === null){
-        res.status(400).send('Tupla inexistente nesse id')
+        res.status(400).send('non-existent ID')
     }
     companyUpdate.is_Active = false;
-    const resultUp = await companyUpdate.save().catch((erro) => {
-        res.send('Deu errado: ' + erro);
+    const resultUp = await companyUpdate.save().catch((err) => {
+        throw new Error("Err " + err);
     });
     res.json(resultUp);
 }
