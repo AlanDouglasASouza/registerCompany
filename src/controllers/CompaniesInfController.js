@@ -1,10 +1,10 @@
 import Company from "../models/Companies";
 import Company_inf from "../models/Companies_inf";
 import { validateCnpj } from "../validations/validateCnpj";
-import { validateInscEst } from "../validations/validateInscEst";
 import { validateEmail } from "../validations/validateEmail";
+import validateInscEst from '../validations/validateInscEst';
 
-export const createCompany = async (req, res) => {
+export const createCompany = async (req, res, next) => {
 
     if(!validateCnpj(req.body.cnpj)){
         res.status(400).send('CNPJ does not exist!');
@@ -35,12 +35,12 @@ export const createCompany = async (req, res) => {
     const companiesRegister = await Company.create({
         name: req.body.name,
         abstract: req.body.abstract,
-        photoCompany: req.body.photoCompany,
+        photoCompany: req.file.path,
         companiesInformationId: idInf
     }).catch((erro) => {
         res.send("Err: " + erro);
     });
 
-    res.send(companiesRegister);
+    res.json(companiesRegister);
     
 }

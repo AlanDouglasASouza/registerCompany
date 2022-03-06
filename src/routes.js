@@ -5,11 +5,11 @@ import { photo, PhotoCompanies } from './storage/storage';
 
 const routes = express();
 
-routes.get('/home/company-inf', getAllCompanies)
-routes.get('/findOneCompany/:id', getOneCompanies)
-routes.post('/registerCompany', createCompany)
-routes.put('/update/:id', deleteCompany)
-routes.post('/uploadPhoto', photo(), PhotoCompanies)
+routes.get('/home/company-inf', getAllCompanies);
+routes.get('/findOneCompany/:id', getOneCompanies);
+routes.post('/registerCompany',  photo(), createCompany);
+routes.put('/update/:id', deleteCompany);
+routes.post('/uploadPhoto', PhotoCompanies);
 
 
 export default routes;

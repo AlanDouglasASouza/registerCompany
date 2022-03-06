@@ -17,12 +17,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 export const photo = () => {
-    const p = upload.single('photo')  
+    const p = upload.single('photo');
     return p;
 }
 
-export const PhotoCompanies = async (req, res, next) => {
-    const photoUpComp = await req.file;    
+export const PhotoCompanies = async (req, res) => {
+    const photoUpComp = await req.body.photoCom;  
     
-    res.status(200).json(photoUpComp);
+    res.status(200).sendFile(__dirname.replace('src\\storage', '') + photoUpComp);
 }

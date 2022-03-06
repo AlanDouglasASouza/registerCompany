@@ -2,14 +2,14 @@ import Company from "../models/Companies";
 import Company_inf from "../models/Companies_inf";
 
 export const getAllCompanies = async (req, res) => {
-        const buscarComp = await Company.findAll({
+        const getComp = await Company.findAll({
             include: Company_inf,
             where: {is_Active: true}
         }).catch((err) => {
             throw new Error("Err " + err);
         });
 
-        res.json(buscarComp);
+        res.json(getComp);
     }
 
 
@@ -25,7 +25,8 @@ export const getOneCompanies = async (req, res) => {
         });
         if (oneComapany == null) {
             res.status(400).send("non-existent ID");            
-        }
+        }       
+
         res.json(oneComapany);
     }   
 
