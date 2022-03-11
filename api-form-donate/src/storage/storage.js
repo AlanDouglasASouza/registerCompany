@@ -20,9 +20,3 @@ export const photo = () => {
     const p = upload.single('photo');
     return p;
 }
-
-export const PhotoCompanies = async (req, res) => {
-    const photoUpComp = await req.body.photoCom;  
-    
-    res.status(200).sendFile(__dirname.replace('src\\storage', '') + photoUpComp);
-}

@@ -1,7 +1,8 @@
 import express from 'express';
 import { createCompany } from './controllers/CompaniesInfController';
 import { deleteCompany, getAllCompanies, getOneCompanies } from './controllers/CompaniesController';
-import { photo, PhotoCompanies } from './storage/storage';
+import { photo } from './storage/storage';
+import { PhotoCompanies } from './controllers/StorageController';
 
 const routes = express();
 
