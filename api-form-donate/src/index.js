@@ -9,5 +9,5 @@ app.use(json());
 app.use(routes)
 
 app.listen(8080, () => {
-    console.log('Servidor iniciado');
+    console.log('Server ON!');
 });

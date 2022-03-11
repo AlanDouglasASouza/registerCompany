@@ -52,8 +52,7 @@ const Company_inf = sequelize.define('companies_informations', {
     }
 })
 
-/*Company_inf.sync({force:true}).catch((erro) => {
-    console.log('erro fazendo a tabela: ' + erro);
-});*/
+//Company_inf.sync({force:true});
+
 
 export default Company_inf;

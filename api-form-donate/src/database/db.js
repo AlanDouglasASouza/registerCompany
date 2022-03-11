@@ -6,9 +6,9 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: 'mysql'
 });
 
-sequelize.authenticate().then(function(){
-    console.log('Conexão realizada com sucesso. ');
-}).catch(function(erro){
-    console.error('Houve um erro ao tentar se conectar com o banco de dados: ', erro);
+sequelize.authenticate().then(() => {
+    console.log('Database connection SUCCESSFUL!');
+}).catch((err) => {
+    console.error('Error trying to connect to the database: ', err);
 })
 export default sequelize;

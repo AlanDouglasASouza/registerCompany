@@ -40,6 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+src/uploads
 
 # TypeScript v1 declaration files
 typings/
@@ -85,6 +86,9 @@ models/.env
 # Nuxt.js build / generate output
 .nuxt
 dist
+
+# Files
+src/pagination.js
 
 # Gatsby files
 .cache/
